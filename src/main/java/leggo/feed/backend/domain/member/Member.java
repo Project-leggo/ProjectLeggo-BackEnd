@@ -2,6 +2,7 @@ package leggo.feed.backend.domain.member;
 
 import jakarta.persistence.*;
 import leggo.feed.backend.domain.member.constant.Role;
+import leggo.feed.backend.domain.member.request.MemberServiceCreateRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -76,5 +77,13 @@ public class Member {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.deleteAt = deleteAt;
+    }
+
+    public static Member of(MemberServiceCreateRequest request, String password) {
+        return Member.builder()
+                .email(request.email())
+                .password(password)
+                .nickname(request.nickname())
+                .build();
     }
 }
