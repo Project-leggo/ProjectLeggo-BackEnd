@@ -1,7 +1,5 @@
-package leggo.feed.backend.domain.member.constant;
+package leggo.feed.backend.domain.member;
 
-import leggo.feed.backend.domain.member.Member;
-import leggo.feed.backend.domain.member.MemberRepository;
 import leggo.feed.backend.domain.member.request.MemberServiceCreateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

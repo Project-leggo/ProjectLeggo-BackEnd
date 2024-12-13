@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import leggo.feed.backend.domain.member.constant.MemberService;
 import leggo.feed.backend.domain.member.request.MemberCreateRequest;
 import leggo.feed.backend.domain.member.response.MemberInfoResponse;
 import lombok.RequiredArgsConstructor;
