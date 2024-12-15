@@ -55,10 +55,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000","https://scintillating-caramel-7883ef.netlify.app/")); // 모든 Origin 허용
-        configuration.addAllowedMethod("*"); // 모든 HTTP Method 허용
-        configuration.addAllowedHeader("*"); // 모든 Header 허용
-        configuration.setAllowCredentials(true); // 인증 정보 허용
+        configuration.setAllowedOrigins(List.of("http://localhost:3000","https://scintillating-caramel-7883ef.netlify.app/"));
+        configuration.addAllowedMethod("*");
+        configuration.addAllowedHeader("*");
+        configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
