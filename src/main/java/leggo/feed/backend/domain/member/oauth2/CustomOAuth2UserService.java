@@ -23,8 +23,14 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         } else {
             return null;
         }
-        return super.loadUser(userRequest);
+        String username = oAuth2Response.getProvider() + "_" + oAuth2Response.getProviderId();
+
+        UserDTO userDTO = UserDTO.builder()
+                .username(username)
+                .name(oAuth2Response.getName())
+                .role("ROLE_USER")
+                .build();
+        return new CustomOAuth2User(userDTO);
     }
 
-    // TODO 로그인 후 작업 로직 작성
 }
