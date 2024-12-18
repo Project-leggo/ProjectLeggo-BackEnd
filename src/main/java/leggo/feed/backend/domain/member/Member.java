@@ -83,12 +83,4 @@ public class Member {
                 .build();
     }
 
-    public static Member of(OAuth2MemberCreateRequest request) {
-        return Member.builder()
-                .name(request.name())
-                .nickname(request.username())
-                .role(request.role())
-                .build();
-    }
-
 }

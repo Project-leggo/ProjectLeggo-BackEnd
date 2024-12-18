@@ -13,7 +13,6 @@ public record MemberCreateRequest(
         String nickname
         // String image
 ) {
-
     public MemberServiceCreateRequest toServiceRequest() {
         return MemberServiceCreateRequest.builder()
                 .email(email)
