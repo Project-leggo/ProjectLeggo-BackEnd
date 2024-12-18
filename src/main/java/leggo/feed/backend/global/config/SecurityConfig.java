@@ -1,5 +1,6 @@
 package leggo.feed.backend.global.config;
 
+import leggo.feed.backend.jwt.JwtFilter;
 import leggo.feed.backend.jwt.JwtUtil;
 import leggo.feed.backend.domain.member.oauth2.CustomOAuth2UserService;
 import leggo.feed.backend.domain.member.oauth2.CustomSuccessHandler;
@@ -17,6 +18,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -49,6 +51,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(HttpBasicConfigurer::disable)
+                .addFilterBefore(new JwtFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)
                 .oauth2Login((oauth2) -> oauth2
                 .userInfoEndpoint((userInfoEndpointConfig) -> userInfoEndpointConfig
                         .userService(customOAuth2UserService))
