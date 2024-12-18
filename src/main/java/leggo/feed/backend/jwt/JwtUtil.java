@@ -1,4 +1,4 @@
-package leggo.feed.backend;
+package leggo.feed.backend.jwt;
 
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Value;

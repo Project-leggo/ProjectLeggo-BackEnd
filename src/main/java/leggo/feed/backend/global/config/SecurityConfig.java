@@ -1,6 +1,6 @@
 package leggo.feed.backend.global.config;
 
-import leggo.feed.backend.JwtUtil;
+import leggo.feed.backend.jwt.JwtUtil;
 import leggo.feed.backend.domain.member.oauth2.CustomOAuth2UserService;
 import leggo.feed.backend.domain.member.oauth2.CustomSuccessHandler;
 import lombok.RequiredArgsConstructor;
