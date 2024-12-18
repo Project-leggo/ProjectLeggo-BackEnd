@@ -1,6 +1,8 @@
 package leggo.feed.backend.global.config;
 
+import leggo.feed.backend.JwtUtil;
 import leggo.feed.backend.domain.member.oauth2.CustomOAuth2UserService;
+import leggo.feed.backend.domain.member.oauth2.CustomSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +30,8 @@ import java.util.List;
 public class SecurityConfig {
 
     private final CustomOAuth2UserService customOAuth2UserService;
+    private final CustomSuccessHandler customSuccessHandler;
+    private final JwtUtil jwtUtil;
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
@@ -46,7 +50,10 @@ public class SecurityConfig {
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(HttpBasicConfigurer::disable)
                 .oauth2Login((oauth2) -> oauth2
-                .userInfoEndpoint((userInfoEndpointConfig) -> userInfoEndpointConfig.userService(customOAuth2UserService)))
+                .userInfoEndpoint((userInfoEndpointConfig) -> userInfoEndpointConfig
+                        .userService(customOAuth2UserService))
+                        .successHandler(customSuccessHandler)
+                )
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
