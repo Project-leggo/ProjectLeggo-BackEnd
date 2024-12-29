@@ -25,7 +25,6 @@ public class Member {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
     private String password;
 
     private String role;
@@ -33,16 +32,12 @@ public class Member {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false, length = 100)
     private String nickname;
 
-    @Column(nullable = false, length = 100)
     private String tel;
 
-    @Column(nullable = false, length = 100)
     private String birth;
 
-    @Column(nullable = false)
     private String description;
 
     private String username;
