@@ -1,7 +1,7 @@
 package leggo.feed.backend.domain.member;
 
 import jakarta.persistence.*;
-import leggo.feed.backend.domain.member.constant.Role;
+import leggo.feed.backend.domain.member.oauth2.OAuth2MemberCreateRequest;
 import leggo.feed.backend.domain.member.request.MemberServiceCreateRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -25,30 +25,22 @@ public class Member {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    private String role;
 
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false, length = 100)
     private String nickname;
 
-    @Column(nullable = false, length = 100)
     private String tel;
 
-    @Column(nullable = false, length = 100)
     private String birth;
 
-    @Column(nullable = false)
     private String description;
 
-    private String provider;
-
-    private String providerId;
+    private String username;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
@@ -61,8 +53,8 @@ public class Member {
     private LocalDateTime deleteAt;
 
     @Builder
-    private Member(String email, String password, Role role, String name, String nickname,
-                   String tel, String birth, String description, String provider, String providerId,
+    private Member(String email, String password, String role, String name, String nickname,
+                   String tel, String birth, String description, String username,
                    LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime deleteAt) {
         this.email = email;
         this.password = password;
@@ -72,8 +64,7 @@ public class Member {
         this.tel = tel;
         this.birth = birth;
         this.description = description;
-        this.provider = provider;
-        this.providerId = providerId;
+        this.username = username;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.deleteAt = deleteAt;
@@ -86,4 +77,5 @@ public class Member {
                 .nickname(request.nickname())
                 .build();
     }
+
 }
