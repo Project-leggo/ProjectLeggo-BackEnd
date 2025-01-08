@@ -2,6 +2,7 @@ package leggo.feed.backend.domain.member.oauth2;
 
 import leggo.feed.backend.domain.member.Member;
 import leggo.feed.backend.domain.member.MemberRepository;
+import leggo.feed.backend.domain.member.response.KakaoResponse;
 import leggo.feed.backend.domain.member.response.GoogleResponse;
 import leggo.feed.backend.domain.member.response.OAuth2Response;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         if (registrationId.equals("google")) {
             oAuth2Response = new GoogleResponse(oAuth2User.getAttributes());
+        } else if (registrationId.equals("kakao")) {
+            oAuth2Response = new KakaoResponse(oAuth2User.getAttributes());
         } else {
             return null;
         }
@@ -41,14 +44,14 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                     .username(username)
                     .email(oAuth2Response.getEmail())
                     .name(oAuth2Response.getName())
-                    .role("ROLE_USER")
+                    .role("User")
                     .build();
             memberRepository.save(newOAuth2Member);
 
             OAuth2MemberCreateRequest request = OAuth2MemberCreateRequest.builder()
                     .name(oAuth2Response.getName())
                     .username(username)
-                    .role("ROLE_USER")
+                    .role("User")
                     .build();
 
             return new CustomOAuth2User(request);
